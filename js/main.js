@@ -42,12 +42,12 @@ const countries = [
        
         countryArray.forEach((countries) => {
         let countryName = countries.countryName.toLowerCase();
-        domString += `<div class="card" id="container-${countryName}">`;
+        domString += `<div class="card" id="${countryName}">`;
         domString += `<img src="${countries.image}" alt="">`;
         domString +=  `<h1>${countries.countryName}</h1>`;
         domString += `<h3>${countries.description}</h3>`;
         domString += `<input type='text' id="input-${countryName}" class='input' placeholder='type your text here'>`; 
-        domString +=`<button class="add-note-button" data-country-name="${countryName}" data-container-id="container-${countryName}">Add Note</button>`;
+        domString +=`<button class="add-note-button" data-country-name="${countryName}">Add Note</button>`;
         domString += `</div>`; 
     
         })
@@ -56,18 +56,63 @@ const countries = [
     
     cardMaker(countries);
 
-const allAddButtons = document.getElementsByClassName(`add-note-button`);
+const createNote = () => {
+}
 
+
+
+
+
+
+
+const allAddButtons = document.getElementsByClassName(`add-note-button`);
 
 for (let i=0; i < allAddButtons.length; i++){
     allAddButtons[i].addEventListener('click', (e)=> {
+
+
         console.log('event!', e);
-        console.log("data set", e.currentTarget.dataset)
-        const countryInput = document.getElementById(`input-${e.currentTarget.dataset.countryName}`);
-        console.log(countryInput)
+        //1. Get value from input by looking at the button's closest sibling.
+        let inputText = e.target.previousElementSibling.value;
+        let countryName = e.target.dataset.countryName
+        console.log('event.target', e.target.dataset)
+        //2.  If the length of the input value is empty let the user know its empty
+        if (inputText.length === 0 ) {
+           return  alert("Please add text");
+        }
+        
+
+        //3.  Create the html for the new note that will be added to the document.
+ 
+        let el = document.createElement('div');
+
+
+        let addingToDiv = `<div><header class="notes-header">${countryName}</header><span>${inputText}</span></div>`;
+
+        el.innerHTML = addingToDiv;
+
+        let notesContainer = document.getElementById("notes")
+        notesContainer.appendChild(el)   //4.  Add the new note to the country. 
+
+
+       
+
         
     });
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
