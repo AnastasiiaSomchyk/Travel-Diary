@@ -4,6 +4,9 @@
 
 A travel diary app that allows you to write notes about your adventures, for each country.
 
+## Screenshot
+<img src="https://media.giphy.com/media/pcKVqRhiWgY2HGDfaL/giphy.gif">
+
 ## How to Run
 
 * cd to directory in terminal
